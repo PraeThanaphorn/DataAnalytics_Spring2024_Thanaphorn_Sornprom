@@ -163,3 +163,19 @@ qplot(interaction(ToothGrowth$supp, ToothGrowth$dose), ToothGrowth$len, geom = "
 qplot(interaction(supp, dose), len, data=ToothGrowth, geom="boxplot")
 #This is equivalent to:
 ggplot(ToothGrowth, aes(x=interaction(supp, dose), y=len))+geom_boxplot()
+
+#Plotting a Function Curve
+curve(x^3 - 5*x, from=-4, to=4)
+
+#Plot a user-defined function
+myfunction <- function(xvar){
+  1/(1+exp(-xvar + 10))
+}
+curve(myfunction(x), from=0, to=20)
+#Add a line:
+curve(1-myfunction(x), add=TRUE, col="red")
+
+library(ggplot2)
+#This sets the x range from 0 to 20.
+#qplot(c(0,20), fun=myfunction, stat = "function", geom = "line")
+ggplot(data.frame(x=c(0,20)), aes(x=x))+stat_function(fun=myfunction, geom="line")
