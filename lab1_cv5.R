@@ -1,3 +1,4 @@
+#Cross Validation
 ## set up folds for cross-validation
 folds <- cvFolds(nrow(coleman), K = 5, R = 50)
 
